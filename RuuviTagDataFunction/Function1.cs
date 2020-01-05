@@ -52,13 +52,13 @@ namespace RuuviTagDataFunction
                     connection.Open();
                     StringBuilder sb = new StringBuilder();
 
-                    sb.Append("INSERT INTO RuuviTagData VALUES (");
+                    sb.Append("INSERT INTO dbo.SimpleRuuviTagMetrics VALUES (");
                     sb.Append("'" + timestamp + "', ");
                     sb.Append("'" + deviceId + "', ");
-                    sb.Append("'" + jsonData["identifier"].ToString() + "', ");
-                    sb.Append(jsonData["temperature"].ToString() + ", ");
-                    sb.Append(jsonData["humidity"].ToString() + ", ");
-                    sb.Append(jsonData["pressure"].ToString());
+                    sb.Append("'" + jsonData["deviceId"] + "', ");
+                    sb.Append(Math.Round((decimal)jsonData["temperature"]) + ", ");
+                    sb.Append(Math.Round((decimal)jsonData["humidity"]) + ", ");
+                    sb.Append(Math.Round((decimal)jsonData["pressure"]));
                     sb.Append(")");
 
                     log.LogInformation(sb.ToString());
